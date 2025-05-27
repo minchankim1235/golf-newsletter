@@ -256,25 +256,6 @@ ${koreanNews.map(news => `- **${news.title}**: ${news.summary}
 ${internationalNews.map(news => `- **${news.title}**: ${news.summary}
   - 출처: ${news.source}`).join('\n\n')}
 
----
-
-## 🏆 대회 정보
-
-### 📅 예정 대회
-- **모임 월례 대회**
-  - 일정: ${moment().add(1, 'week').format('MM월 DD일 (dddd)')}
-  - 장소: 추후 공지
-  - 참가비: 10만원
-  - 신청 방법: 단체방 신청
-
-### 🎯 최근 대회 결과
-- **지난주 모임 대회** (${moment().subtract(1, 'week').format('MM월 DD일')})
-  - 🥇 우승: 김골프 (-2)
-  - 🥈 준우승: 이퍼팅 (-1)
-  - 🥉 3위: 박드라이버 (E)
-
----
-
 ## 💡 골프 팁
 
 ### 🏌️‍♂️ 오늘의 기술 팁
@@ -286,13 +267,6 @@ ${internationalNews.map(news => `- **${news.title}**: ${news.summary}
 ### 🤝 에티켓 포인트
 - ${etiquette}
 
-### 🛒 용품 정보
-**추천 용품:** 골프 거리측정기
-- 특징: 정확한 핀까지 거리 측정
-- 가격대: 15-30만원
-- 구매처: 골프용품점, 온라인쇼핑몰
-
----
 
 ## 💭 오늘의 골프 명언
 
@@ -325,19 +299,6 @@ ${lesson.practice.map(practice => `- ${practice}`).join('\n')}
 
 **프로 팁:**
 💡 ${lesson.tip}
-
----
-
-## 📞 모임 정보
-
-**다음 모임:** ${moment().add(3, 'days').format('MM월 DD일 (dddd) HH:mm')}  
-**연락처:** 010-1234-5678  
-**카카오톡:** [단체방 링크]
-
----
-
-*📧 뉴스레터 문의 및 제보: golf@example.com*  
-*📱 모임 관련 문의: 010-1234-5678*
 
 ---
 **🏌️‍♀️ 좋은 하루 되세요! 파이팅! 🏌️‍♂️**`;
@@ -373,7 +334,7 @@ ${lesson.practice.map(practice => `- ${practice}`).join('\n')}
 
 ## 🔄 자동 업데이트
 
-이 뉴스레터는 매일 오전 7시에 자동으로 업데이트됩니다.
+이 뉴스레터는 매일 오전 4시에 자동으로 업데이트됩니다.
 
 마지막 업데이트: ${moment().format('YYYY-MM-DD HH:mm:ss')}
 `;
