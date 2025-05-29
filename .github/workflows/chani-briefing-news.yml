@@ -28,28 +28,28 @@ jobs:
         npm init -y
         npm install axios cheerio moment
         
-    - name: Create necessary directories
+    - name: Create output directories
       run: |
         cd chani-briefing
         mkdir -p output/images
-        
-    - name: Create news-collector.js
-      run: |
-        cd chani-briefing
-        # 여기에 news-collector.js 내용을 추가할 예정
-        echo "// news-collector.js 파일이 여기에 생성됩니다" > news-collector.js
         
     - name: Generate today's news
       run: |
         cd chani-briefing
         TODAY=$(date -u +%Y-%m-%d)
-        echo "🚀 찬이브리핑뉴스 생성: $TODAY"
-        # node generate-news.js $TODAY (일단 테스트용)
+        echo "🚀 찬이브리핑뉴스 생성 시작: $TODAY"
+        node generate-news.js $TODAY
+        
+    - name: List generated files
+      run: |
+        cd chani-briefing
+        echo "📁 생성된 파일들:"
+        ls -la output/
         
     - name: Commit and push
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git add .
-        git commit -m "📰 찬이브리핑뉴스 업데이트 - $(date -u +%Y-%m-%d)" || exit 0
+        git commit -m "📰 찬이브리핑뉴스 자동 업데이트 - $(date -u +%Y-%m-%d)" || exit 0
         git push
