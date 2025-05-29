@@ -1,0 +1,55 @@
+name: 찬이브리핑뉴스 자동 생성
+
+on:
+  schedule:
+    # 매일 새벽 4시 (UTC 19시) 실행
+    - cron: '0 19 * * *'
+  workflow_dispatch: # 수동 실행 가능
+
+permissions:
+  contents: write
+
+jobs:
+  generate-chani-briefing:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        
+    - name: Install dependencies
+      run: |
+        cd chani-briefing
+        npm init -y
+        npm install axios cheerio moment
+        
+    - name: Create necessary directories
+      run: |
+        cd chani-briefing
+        mkdir -p output/images
+        
+    - name: Create news-collector.js
+      run: |
+        cd chani-briefing
+        # 여기에 news-collector.js 내용을 추가할 예정
+        echo "// news-collector.js 파일이 여기에 생성됩니다" > news-collector.js
+        
+    - name: Generate today's news
+      run: |
+        cd chani-briefing
+        TODAY=$(date -u +%Y-%m-%d)
+        echo "🚀 찬이브리핑뉴스 생성: $TODAY"
+        # node generate-news.js $TODAY (일단 테스트용)
+        
+    - name: Commit and push
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add .
+        git commit -m "📰 찬이브리핑뉴스 업데이트 - $(date -u +%Y-%m-%d)" || exit 0
+        git push
